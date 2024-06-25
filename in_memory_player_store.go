@@ -1,4 +1,4 @@
-package main
+package poker
 
 import (
     "sync"
@@ -21,4 +21,12 @@ func (i *InMemoryPlayerStore) RecordWin(name string) {
 
 func (i *InMemoryPlayerStore) GetPlayerScore(name string) int {
 	return i.store[name]
+}
+
+func (i *InMemoryPlayerStore) GetPlayers() League {
+	var players []Player
+	for name, wins := range i.store {
+		players = append(players, Player{name, wins})
+	}
+	return players
 }
