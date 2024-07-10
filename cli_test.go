@@ -6,6 +6,7 @@ import (
 	"strings"
 	"testing"
 	"time"
+	"io"
 
 	poker "github.com/mizrahishahar/go-web-app"
 )
@@ -101,7 +102,7 @@ type SpyBlindAlerter struct {
 	alerts []ScheduledAlert
 }
 
-func (s *SpyBlindAlerter) ScheduleAlertAt(duration time.Duration, amount int) {
+func (s *SpyBlindAlerter) ScheduleAlertAt(duration time.Duration, amount int, w io.Writer) {
 	s.alerts = append(s.alerts, ScheduledAlert{duration, amount})
 }
 

@@ -1,6 +1,9 @@
 package poker
 
-import "testing"
+import (
+	"io"
+	"testing"
+)
 
 type StubPlayerStore struct {
 	scores   map[string]int
@@ -48,7 +51,7 @@ type GameSpy struct {
 	FinishCalled bool
 }
 
-func (g *GameSpy) Start(numberOfPlayers int) {
+func (g *GameSpy) Start(numberOfPlayers int, alertsDestination io.Writer) {
 	g.StartCalled = true
 	g.StartedWith = numberOfPlayers
 }
